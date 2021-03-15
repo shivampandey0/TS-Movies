@@ -1,6 +1,8 @@
-# ts_movies_app
+# MOVIES APP
 
-A new Flutter project.
+Movies app following Techie Blossoms Tutorial
+
+
 
 ## Getting Started
 
