@@ -19,7 +19,7 @@ class MovieRemoteDataSourceImpl extends MovieRemoteDataSource {
   Future<List<MovieModel>> getTrending() async {
     final response = await _client.get('trending/movie/day');
     final movies = MoviesResultModel.fromJson(response).movies;
-    print(movies);
+    // print(movies);
     return movies;
   }
 
