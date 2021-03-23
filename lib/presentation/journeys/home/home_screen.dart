@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ts_movies_app/di/get_it.dart';
+import 'package:ts_movies_app/presentation/blocs/movie_backdrop/movie_backdrop_bloc.dart';
 import 'package:ts_movies_app/presentation/blocs/movie_carousel/movie_carousel_bloc.dart';
 import 'package:ts_movies_app/presentation/journeys/home/movie_carousel/movie_carousel_widget.dart';
 
@@ -11,25 +12,35 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   MovieCarouselBloc movieCarouselBloc;
+  MovieBackdropBloc movieBackdropBloc;
 
   @override
   void initState() {
     super.initState();
     movieCarouselBloc = getItInstance<MovieCarouselBloc>();
+    movieBackdropBloc = movieCarouselBloc.movieBackdropBloc;
     movieCarouselBloc.add(CarouselLoadEvent());
   }
 
   @override
   void dispose() {
     movieCarouselBloc?.close();
+    movieBackdropBloc?.close();
 
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<MovieCarouselBloc>(
-      create: (context) => movieCarouselBloc,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => movieCarouselBloc,
+        ),
+        BlocProvider(
+          create: (context) => movieBackdropBloc,
+        ),
+      ],
       child: Scaffold(
         body: BlocBuilder<MovieCarouselBloc, MovieCarouselState>(
           bloc: movieCarouselBloc,
@@ -57,12 +68,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               );
             }
-            // if (state is MovieCarouselError) {
-            return Container(
-              color: Colors.red,
-            );
-            // }
-            // return SizedBox.shrink();
+
+            return SizedBox.shrink();
           },
         ),
       ),

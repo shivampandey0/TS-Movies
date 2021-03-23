@@ -17,7 +17,8 @@ class MovieCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      elevation: 32,  
+      elevation: 32,
+      borderRadius: BorderRadius.circular(Sizes.dimen_16.w),
       child: GestureDetector(
         onTap: () {},
         child: ClipRRect(
