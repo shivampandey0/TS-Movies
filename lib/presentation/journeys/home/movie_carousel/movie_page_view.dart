@@ -5,7 +5,6 @@ import 'package:ts_movies_app/common/screenutil/screenutil.dart';
 import 'package:ts_movies_app/domain/entities/movie_entity.dart';
 import 'package:ts_movies_app/presentation/blocs/movie_backdrop/movie_backdrop_bloc.dart';
 import 'package:ts_movies_app/presentation/journeys/home/movie_carousel/animated_movie_card_widget.dart';
-import 'package:ts_movies_app/presentation/journeys/home/movie_carousel/movie_card_widget.dart';
 
 import '../../../../common/extensions/size_extensions.dart';
 
